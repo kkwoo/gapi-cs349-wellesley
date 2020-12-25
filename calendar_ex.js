@@ -74,16 +74,6 @@ addButton.onclick = function(){
     createEvent(userChoices);
 }
 
-function setDate() {
-  let now = new Date();
-  document.querySelector("#date").value = [now.getFullYear(), now.getMonth(), now.getDate()].join("-");
-}
-
-function setTime(tRef) {
-  let now = new Date();
-  document.querySelector(tRef).value = [now.getHours(), now.getMinutes()].join(":");
-}
-
 function getUserInput(){
   
   var date = document.querySelector("#date").value;
