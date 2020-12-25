@@ -81,7 +81,9 @@ function setDate() {
 
 function setTime(tRef) {
   let now = new Date();
-  document.querySelector(tRef).value = [now.getHours(), now.getMinutes()].join(":");
+  let curTime = now.toTimeString().slice(0,5);
+  document.querySelector(tRef).value = curTime;
+  console.log(curTime);
 }
 
 function getUserInput(){
