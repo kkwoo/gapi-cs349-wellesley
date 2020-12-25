@@ -11,9 +11,13 @@
 <h1>Example for Google Calendar</h1>
 <div id="content">
 	<p>Fill these fields to enter a new event in your Google Calendar.</p>
-	<p><label>Select a date: <input type="date" id="date"></label></p>
+	<p><label>Select a date: <input type="date" id="date"></label>
+     <button id="btn-set-start" onclick="setDate()">set to current date</button>
+</p>
     <p><label>Start time <input type="time" id="start"></label>
+       <button id="btn-set-start" onclick="setTime('#start')">set to current time</button>
        <label>End time: <input type="time" id="end"></label>
+       <button id="btn-set-end" onclick="setTime('#end')">set to current time</button>
     </p>
     <p><label>Event description: <input type="text" id="event" size=60></label></p>
     <p><button id="authorize-button" style="visibility: hidden">Login & Authorize</button></p>
