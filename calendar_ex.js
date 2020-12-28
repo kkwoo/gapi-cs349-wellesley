@@ -28,7 +28,7 @@ function handleClientLoad() {
 /* API function to check whether the app is authorized. */
 function checkAuth() {
   console.log("Inside checkAuth ...");
-  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, 
+  gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
                       handleAuthResult);
 }
 
@@ -76,14 +76,14 @@ addButton.onclick = function(){
 
 function setDate() {
   let now = new Date();
-  document.querySelector("#date").value = [now.getFullYear(), now.getMonth(), now.getDate()].join("-");
+  document.querySelector("#date").value = now.toISOString().slice(0,10);
 }
 
 function setTime(tRef) {
   let now = new Date();
-  let curTime = now.toTimeString().slice(0,5);
+  let curTime = now.toTimeString().slice(0,8);
   document.querySelector(tRef).value = curTime;
-  console.log(curTime);
+  // console.log(curTime);
 }
 
 function getUserInput(){
@@ -111,7 +111,7 @@ function createEvent(eventData) {
         "start": {
           "dateTime": new Date(eventData.date + " " + eventData.startTime).toISOString()
         },
-        "end": {
+         "end": {
           "dateTime": new Date(eventData.date + " " + eventData.endTime).toISOString()
           }
         };

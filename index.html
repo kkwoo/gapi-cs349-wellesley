@@ -8,15 +8,16 @@
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>Example for Google Calendar</h1>
+<h1>Google Calendar: Habit Log</h1>
 <div id="content">
 	<p>Fill these fields to enter a new event in your Google Calendar.</p>
 	<p><label>Select a date: <input type="date" id="date"></label>
      <button id="btn-set-start" onclick="setDate()">set to current date</button>
 </p>
-    <p><label>Start time <input type="time" id="start"></label>
+    <p><label>Start time <input type="time" id="start" step="1"></label>
        <button id="btn-set-start" onclick="setTime('#start')">set to current time</button>
-       <label>End time: <input type="time" id="end"></label>
+    </p>
+    <p><label>End time: <input type="time" id="end" step="1"></label>
        <button id="btn-set-end" onclick="setTime('#end')">set to current time</button>
     </p>
     <p><label>Event description: <input type="text" id="event" size=60></label></p>
