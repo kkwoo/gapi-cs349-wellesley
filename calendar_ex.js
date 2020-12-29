@@ -35,7 +35,7 @@ function checkAuth() {
 /* Invoked by different functions to handle the result of authentication checks.*/
 var authData;
 function handleAuthResult(authResult) {
-    console.log("Inside handleAuthResult ...");
+    console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
     authData = authResult;
     var authorizeButton = document.getElementById('authorize-button');
     var addButton = document.getElementById('addToCalendar');
@@ -76,7 +76,13 @@ addButton.onclick = function(){
 
 function setDate() {
   let now = new Date();
-  document.querySelector("#date").value = now.toISOString().slice(0,10);
+  // toISOString is in UTC, but we want to use local time
+  // document.querySelector("#date").value = now.toISOString().slice(0,10);
+  let lpad20s = (x) => {return String(x).padStart(2, "0")};
+  document.querySelector("#date").value =
+    [lpad20s(now.getFullYear()),
+    lpad20s(now.getMonth() + 1),
+    lpad20s(now.getDate())].join('-');
 }
 
 function setTime(tRef) {
