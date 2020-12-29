@@ -35,6 +35,7 @@ function checkAuth() {
 /* Invoked by different functions to handle the result of authentication checks.*/
 var authData;
 function handleAuthResult(authResult) {
+    // console.log(`Inside handleAuthResult ...`);
     console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
     authData = authResult;
     var authorizeButton = document.getElementById('authorize-button');
