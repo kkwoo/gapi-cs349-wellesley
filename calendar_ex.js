@@ -131,6 +131,11 @@ function createEvent(eventData) {
     // execute the request and do something with response
     request.execute(function(resp) {
       console.log(resp);
-      alert("Your event was added to the calendar.");
+      if (resp && !resp.error) {
+        alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
+
+      } else {
+        alert(`fail: ${resp.code}, ${resp.error.message}`);
+      }
     });
 }
