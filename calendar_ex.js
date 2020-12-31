@@ -135,7 +135,9 @@ function createEvent(eventData) {
         alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
 
       } else {
-        alert(`fail: ${resp.code}, ${resp.error.message}`);
+        alert(`fail: ${resp.code}, ${resp.error.message} and will retry...`);
+        handleAuthClick(false);
+        request.execute(x => {(x && !x.error) ? alert(`${x.etag}`) : alert(`${x.code}`) });
       }
     });
 }
