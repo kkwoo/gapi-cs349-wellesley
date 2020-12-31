@@ -136,8 +136,12 @@ function createEvent(eventData) {
 
       } else {
         alert(`fail: ${resp.code}, ${resp.error.message} and will retry...`);
-        handleAuthClick(false);
-        request.execute(x => {(x && !x.error) ? alert(`${x.etag}`) : alert(`${x.code}`) });
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
+          y => {
+            request.execute(x => {
+                (x && !x.error) ? alert(`${x.etag}`) : alert(`${x.code}`)
+            });
+          });
       }
     });
 }
