@@ -139,7 +139,7 @@ function createEvent(eventData) {
         gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
           y => {
             request.execute(x => {
-                (x && !x.error) ? alert(`${x.etag}`) : alert(`${x.code}`)
+                (x && !x.error) ? alert(`post-failure success - ${x.etag}: ${x.message}`) : alert(`post-failure failure - ${x.code}: ${x.error.message}`)
             });
           });
       }
