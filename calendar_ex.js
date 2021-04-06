@@ -119,19 +119,20 @@ function getUserInput(){
 
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
-  pagelog.innerHTML += `START createEvent: ${eventData.eventTitle}<br/>`;
-
+  pagelog.innerHTML += `START createEvent: ${eventData.eventTitle}, ${eventData.date.replace(/-/g, '/')}, ${eventData.startTime}, ${eventData.endTime}<br/>`;
+  pagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
+  pagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
   // First create resource that will be send to server.
     var resource = {
         "summary": eventData.eventTitle,
         "start": {
-          "dateTime": new Date(eventData.date + " " + eventData.startTime).toISOString()
+          "dateTime": new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()
         },
          "end": {
-          "dateTime": new Date(eventData.date + " " + eventData.endTime).toISOString()
+          "dateTime": new Date(eventData.date.replace(/-/g, '/') + " " + eventData.endTime).toISOString()
           }
         };
-  pagelog.innerHTML += `createEvent: created resource object<br/>`;
+  pagelog.innerHTML += `createEvent: created ${JSON.stringify(resource)}<br/>`;
 
     // create the request
     var request = gapi.client.calendar.events.insert({
