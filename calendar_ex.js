@@ -16,18 +16,20 @@ in order to toggle on/off the visibility of two buttons of the user interface.
 var clientId = '245081219628-ti387n6lq6a43gtmetbiv1kvtgd09c6k.apps.googleusercontent.com';
 var apiKey = 'AIzaSyDCh7dh8XhSQ58YWIbODV8wJ5jNGTcRb1g';
 var scopes = 'https://www.googleapis.com/auth/calendar';
-      
+var pagelog = document.getElementById('pagelog')      
       
 /* Function invoked when the client javascript library is loaded */
 function handleClientLoad() {
-  console.log("Inside handleClientLoad ...");
+  // console.log("Inside handleClientLoad ...");
+  pagelog.innerHTML += "Inside handleClientLoad ...<br/>";
   gapi.client.setApiKey(apiKey);
   window.setTimeout(checkAuth,100);
 }
 
 /* API function to check whether the app is authorized. */
 function checkAuth() {
-  console.log("Inside checkAuth ...");
+//  console.log("Inside checkAuth ...");
+  pagelog.innerHTML += "Inside checkAuth ...<br/>";
   gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
                       handleAuthResult);
 }
@@ -36,7 +38,8 @@ function checkAuth() {
 var authData;
 function handleAuthResult(authResult) {
     // console.log(`Inside handleAuthResult ...`);
-    console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
+    // console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
+    pagelog.innerHTML += 'Inside handleAuthResult ...<br/>';
     authData = authResult;
     var authorizeButton = document.getElementById('authorize-button');
     var addButton = document.getElementById('addToCalendar');
@@ -45,7 +48,8 @@ function handleAuthResult(authResult) {
           addButton.style.visibility = 'visible'; 
           //load the calendar client library
           gapi.client.load('calendar', 'v3', function(){ 
-            console.log("Calendar library loaded.");
+            // console.log("Calendar library loaded.");
+            pagelog.innerHTML += "Calendar library loaded.<br/>";
           });
     } else {
           authorizeButton.style.visibility = '';
@@ -71,8 +75,11 @@ var addButton = document.getElementById('addToCalendar');
 addButton.onclick = function(){
   var userChoices = getUserInput();
   console.log(userChoices);
-  if (userChoices) 
+  pagelog.innerHTML += JSON.stringify(userChoices);
+  pagelog.innerHTML += "<br/>";
+  if (userChoices) {
     createEvent(userChoices);
+  }
 }
 
 function setDate() {
@@ -112,6 +119,8 @@ function getUserInput(){
 
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
+  pagelog.innerHTML += `START createEvent: ${eventData.eventTitle}<br/>`;
+
   // First create resource that will be send to server.
     var resource = {
         "summary": eventData.eventTitle,
@@ -122,17 +131,20 @@ function createEvent(eventData) {
           "dateTime": new Date(eventData.date + " " + eventData.endTime).toISOString()
           }
         };
+  pagelog.innerHTML += `createEvent: created resource object<br/>`;
+
     // create the request
     var request = gapi.client.calendar.events.insert({
       'calendarId': 'primary',
       'resource': resource
     });
-  
+    pagelog.innerHTML += `adding ${eventData.eventTitle}<br/>`;
     // execute the request and do something with response
     request.execute(function(resp) {
       console.log(resp);
       if (resp && !resp.error) {
-        alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
+        // alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
+        pagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
 
       } else {
         alert(`fail: ${resp.code}, ${resp.error.message} and will retry...`);
