@@ -123,6 +123,7 @@ function createEvent(eventData) {
   pagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
   pagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
   // First create resource that will be send to server.
+  // 20210406: add .replace(/-/g, '/') for iphone compatibility
     var resource = {
         "summary": eventData.eventTitle,
         "start": {
