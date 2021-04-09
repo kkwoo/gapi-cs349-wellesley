@@ -75,8 +75,8 @@ var addButton = document.getElementById('addToCalendar');
 addButton.onclick = function(){
   var userChoices = getUserInput();
   console.log(userChoices);
-  pagelog.innerHTML += JSON.stringify(userChoices);
-  pagelog.innerHTML += "<br/>";
+  /* pagelog.innerHTML += JSON.stringify(userChoices);
+  pagelog.innerHTML += "<br/>"; */
   if (userChoices) {
     createEvent(userChoices);
   }
@@ -120,8 +120,8 @@ function getUserInput(){
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
   pagelog.innerHTML += `START createEvent: ${eventData.eventTitle}, ${eventData.date.replace(/-/g, '/')}, ${eventData.startTime}, ${eventData.endTime}<br/>`;
-  pagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
-  pagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
+//  pagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
+//  pagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
   // First create resource that will be send to server.
   // 20210406: add .replace(/-/g, '/') for iphone compatibility
     var resource = {
@@ -133,7 +133,7 @@ function createEvent(eventData) {
           "dateTime": new Date(eventData.date.replace(/-/g, '/') + " " + eventData.endTime).toISOString()
           }
         };
-  pagelog.innerHTML += `createEvent: created ${JSON.stringify(resource)}<br/>`;
+  // pagelog.innerHTML += `createEvent: created ${JSON.stringify(resource)}<br/>`;
 
     // create the request
     var request = gapi.client.calendar.events.insert({
