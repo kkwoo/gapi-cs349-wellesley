@@ -1,0 +1,28 @@
+.appset {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: row;
+  order: 2;
+}
+
+#ct02b {
+  order: 1;
+}
+
+.lfield {
+  display: flex;
+  order: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rfield {
+  display: flex;
+  order: 2;
+  flex-direction: column;
+  align-items: center;
+}

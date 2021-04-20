@@ -100,6 +100,9 @@ function setTime(tRef) {
   // console.log(curTime);
 }
 
+function resetInput(hE) {
+  document.getElementById(hE).value = '';
+}
 function getUserInput(){
   
   var date = document.querySelector("#date").value;

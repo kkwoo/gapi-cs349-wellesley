@@ -13,12 +13,18 @@
 	<p>Fill these fields to enter a new event in your Google Calendar.</p>
 	<p><label>Select a date: <input type="date" id="date"></label>
      <button id="btn-set-start" onclick="setDate()">Today</button>
+     <button id="btn-reset-start" onclick="resetInput('date');">Reset Date</button>
+     
 </p>
     <p><label>Start time <input type="time" id="start" step="1"></label>
-       <button id="btn-set-start" onclick="setTime('#start')">set to current time</button>
+       <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
+      <button id="btn-reset-stime" onclick="resetInput('start');">Reset Time</button>
+
     </p>
     <p><label>End time: <input type="time" id="end" step="1"></label>
-       <button id="btn-set-end" onclick="setTime('#end')">set to current time</button>
+       <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>
+      <button id="btn-reset-etime" onclick="resetInput('end');">Reset Date</button>
+
     </p>
     <p><label>Event description: <input type="text" id="event" size=60></label></p>
     <p><button id="authorize-button" style="visibility: hidden">Login & Authorize</button></p>
