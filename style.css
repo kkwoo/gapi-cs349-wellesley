@@ -1,28 +1,17 @@
-.appset {
-  display: flex;
-  flex-direction: column;
+.wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
 }
 
-.fieldset {
-  display: flex;
-  flex-direction: row;
-  order: 2;
+.apptitle {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
 }
 
-#ct02b {
-  order: 1;
-}
-
-.lfield {
-  display: flex;
-  order: 1;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.rfield {
-  display: flex;
-  order: 2;
-  flex-direction: column;
-  align-items: center;
+.wholerow {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
