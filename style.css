@@ -5,13 +5,15 @@
   column-gap: 10px;
 }
 
-.apptitle {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-}
-
 .wholerow {
   grid-column-start: 1;
   grid-column-end: 3;
+}
+
+.lhs {
+  align-self: center;
+}
+
+.rhs {
+  align-self: center;
 }
