@@ -7,34 +7,50 @@
 	<title>repl.it</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-<h1>Google Calendar: Habit Log</h1>
-<div id="content">
-	<p>Fill these fields to enter a new event in your Google Calendar.</p>
-	<p><label>Select a date: <input type="date" id="date"></label>
-     <button id="btn-set-start" onclick="setDate()">Today</button>
-     <button id="btn-reset-start" onclick="resetInput('date');">Reset Date</button>
-     
-</p>
-    <p><label>Start time <input type="time" id="start" step="1"></label>
-       <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
+	<div class="wrapper">
+		<div class="wholerow">
+			<h1>Google Calendar: Habit Log</h1>
+		</div>
+		<div class="wholerow">
+			Fill these fields to enter a new event in your Google Calendar.
+    </div>
+		</div class="lhs">
+      <div>Select a date:</div>
+      <div><input type="date" id="date"></div>
+    </div>
+    <div class="rhs">
+      <button id="btn-set-start" onclick="setDate()">Today</button>
+      <button id="btn-reset-start" onclick="resetInput('date');">Reset Date</button>
+    </div>     
+    <div class="lhs">
+      <div>Start time</div>
+      <div><input type="time" id="start" step="1"></div>
+    </div>
+    <div class="rhs">
+      <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
       <button id="btn-reset-stime" onclick="resetInput('start');">Reset Time</button>
-
-    </p>
-    <p><label>End time: <input type="time" id="end" step="1"></label>
-       <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>
+    </div>
+    <div class="lhs">
+      <div>>End time:</div>
+      <div><input type="time" id="end" step="1"><div>
+    </div>
+    <div class="rhs">
+      <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>
       <button id="btn-reset-etime" onclick="resetInput('end');">Reset Date</button>
-
-    </p>
-    <p><label>Event description: <input type="text" id="event" size=60></label></p>
-    <p><button id="authorize-button" style="visibility: hidden">Login & Authorize</button></p>
-    <p><button id="addToCalendar" style="visibility: hidden">Add to Google Calendar</button></p>
-  </div>
+    </div>
+    <div class="wholerow">Event description:</div>
+    <div class="wholerow"><input type="text" id="event" size=30></div>
+    <div class="wholerow">
+      <button id="authorize-button" style="visibility: hidden">Login & Authorize</button>
+      <button id="addToCalendar" style="visibility: hidden">Add to Google Calendar</button>
+    </div>
     <!--Add a button for the user to click to initiate auth sequence -->
-  <div id="pagelog">
-    log:<br/>
-  </div>
-
+    <div id="pagelog" class="wholerow">
+      log:<br/>
+    </div>
+</div>
     <script src="calendar_ex.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
   </body>
