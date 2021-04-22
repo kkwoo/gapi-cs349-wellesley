@@ -152,13 +152,8 @@ function createEvent(eventData) {
         pagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
 
       } else {
-        alert(`fail: ${resp.code}, ${resp.error.message} and will retry...`);
-        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
-          y => {
-            request.execute(x => {
-                (x && !x.error) ? alert(`post-failure success - ${x.etag}: ${x.message}`) : alert(`post-failure failure - ${x.code}: ${x.error.message}`)
-            });
-          });
+        alert(`fail: ${resp.code}, ${resp.error.message} and will reauthorise...`);
+        handleAuthClick(eventData);
       }
     });
 }
