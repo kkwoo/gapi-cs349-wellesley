@@ -108,7 +108,7 @@ function getUserInput(){
   var date = document.querySelector("#date").value;
   var startTime = document.querySelector("#start").value;
   var endTime = document.querySelector("#end").value;
-  var eventDesc = document.querySelector("#event").value;
+  var eventDesc = document.querySelector("#habit").value;
   
   // check input values, they should not be empty
   if (date=="" || startTime=="" || endTime=="" || eventDesc==""){
@@ -118,7 +118,6 @@ function getUserInput(){
   else return {'date': date, 'startTime': startTime, 'endTime': endTime,
                'eventTitle': eventDesc}
 }
-
 
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
@@ -143,7 +142,7 @@ function createEvent(eventData) {
       'calendarId': 'primary',
       'resource': resource
     });
-    pagelog.innerHTML += `adding ${eventData.eventTitle}<br/>`;
+    // pagelog.innerHTML += `adding ${eventData.eventTitle}<br/>`;
     // execute the request and do something with response
     request.execute(function(resp) {
       console.log(resp);
@@ -152,8 +151,22 @@ function createEvent(eventData) {
         pagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
 
       } else {
-        alert(`fail: ${resp.code}, ${resp.error.message} and will reauthorise...`);
+        alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
         handleAuthClick(eventData);
       }
     });
+}
+
+// register radio buttons
+r01.onclick = doSomething;
+r02.onclick = doSomething;
+r03.onclick = doSomething;
+r04.onclick = doSomething;
+r05.onclick = doSomething;
+r06.onclick = doSomething;
+
+function doSomething(e) {
+  e = e || window.e; // IE
+  target = e.target || e.srcElement; // IE
+  habit.value = target.value;
 }
