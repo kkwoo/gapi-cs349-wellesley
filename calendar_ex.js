@@ -13,8 +13,8 @@ in order to toggle on/off the visibility of two buttons of the user interface.
 // Global variables, the values come from the Developer Console
 // Put your OWN clientID and apiKey
 
-var clientId = '245081219628-ti387n6lq6a43gtmetbiv1kvtgd09c6k.apps.googleusercontent.com';
-var apiKey = 'AIzaSyDCh7dh8XhSQ58YWIbODV8wJ5jNGTcRb1g';
+var clientId = '245081219628-a7urtp41iof28b6kqskr5j3a3dhu1c12.apps.googleusercontent.com';
+var apiKey = 'AIzaSyBwrfTm8j1glmNnjQMk6LrSR02R5STl06I';
 var scopes = 'https://www.googleapis.com/auth/calendar';
 var pagelog = document.getElementById('pagelog')      
       
