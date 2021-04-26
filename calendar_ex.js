@@ -16,12 +16,12 @@ in order to toggle on/off the visibility of two buttons of the user interface.
 var clientId = '245081219628-a7urtp41iof28b6kqskr5j3a3dhu1c12.apps.googleusercontent.com';
 var apiKey = 'AIzaSyBwrfTm8j1glmNnjQMk6LrSR02R5STl06I';
 var scopes = 'https://www.googleapis.com/auth/calendar';
-var pagelog = document.getElementById('pagelog')      
+var inpagelog = document.getElementById('inpagelog')      
       
 /* Function invoked when the client javascript library is loaded */
 function handleClientLoad() {
   // console.log("Inside handleClientLoad ...");
-  pagelog.innerHTML += "Inside handleClientLoad ...<br/>";
+  inpagelog.innerHTML += "Inside handleClientLoad ...<br/>";
   gapi.client.setApiKey(apiKey);
   window.setTimeout(checkAuth,100);
 }
@@ -29,7 +29,7 @@ function handleClientLoad() {
 /* API function to check whether the app is authorized. */
 function checkAuth() {
 //  console.log("Inside checkAuth ...");
-  pagelog.innerHTML += "Inside checkAuth ...<br/>";
+  inpagelog.innerHTML += "Inside checkAuth ...<br/>";
   gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
                       handleAuthResult);
 }
@@ -39,7 +39,7 @@ var authData;
 function handleAuthResult(authResult) {
     // console.log(`Inside handleAuthResult ...`);
     // console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
-    pagelog.innerHTML += 'Inside handleAuthResult ...<br/>';
+    inpagelog.innerHTML += 'Inside handleAuthResult ...<br/>';
     authData = authResult;
     var authorizeButton = document.getElementById('authorize-button');
     var addButton = document.getElementById('addToCalendar');
@@ -49,7 +49,7 @@ function handleAuthResult(authResult) {
           //load the calendar client library
           gapi.client.load('calendar', 'v3', function(){ 
             // console.log("Calendar library loaded.");
-            pagelog.innerHTML += "Calendar library loaded.<br/>";
+            inpagelog.innerHTML += "Calendar library loaded.<br/>";
           });
     } else {
           authorizeButton.style.visibility = '';
@@ -75,8 +75,8 @@ var addButton = document.getElementById('addToCalendar');
 addButton.onclick = function(){
   var userChoices = getUserInput();
   console.log(userChoices);
-  /* pagelog.innerHTML += JSON.stringify(userChoices);
-  pagelog.innerHTML += "<br/>"; */
+  /* inpagelog.innerHTML += JSON.stringify(userChoices);
+  inpagelog.innerHTML += "<br/>"; */
   if (userChoices) {
     createEvent(userChoices);
   }
@@ -121,9 +121,9 @@ function getUserInput(){
 
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
-  pagelog.innerHTML += `START createEvent: ${eventData.eventTitle}, ${eventData.date.replace(/-/g, '/')}, ${eventData.startTime}, ${eventData.endTime}<br/>`;
-//  pagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
-//  pagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
+  inpagelog.innerHTML += `START createEvent: ${eventData.eventTitle}, ${eventData.date.replace(/-/g, '/')}, ${eventData.startTime}, ${eventData.endTime}<br/>`;
+//  inpagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
+//  inpagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
   // First create resource that will be send to server.
   // 20210406: add .replace(/-/g, '/') for iphone compatibility
     var resource = {
@@ -135,20 +135,20 @@ function createEvent(eventData) {
           "dateTime": new Date(eventData.date.replace(/-/g, '/') + " " + eventData.endTime).toISOString()
           }
         };
-  // pagelog.innerHTML += `createEvent: created ${JSON.stringify(resource)}<br/>`;
+  // inpagelog.innerHTML += `createEvent: created ${JSON.stringify(resource)}<br/>`;
 
     // create the request
     var request = gapi.client.calendar.events.insert({
       'calendarId': 'primary',
       'resource': resource
     });
-    // pagelog.innerHTML += `adding ${eventData.eventTitle}<br/>`;
+    // inpagelog.innerHTML += `adding ${eventData.eventTitle}<br/>`;
     // execute the request and do something with response
     request.execute(function(resp) {
       console.log(resp);
       if (resp && !resp.error) {
         // alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
-        pagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
+        inpagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
 
       } else {
         alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
