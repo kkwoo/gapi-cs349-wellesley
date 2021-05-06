@@ -72,7 +72,12 @@ performing API calls. */
 
 
 var addButton = document.getElementById('addToCalendar');
+var addStatus = document.getElementById('addStatus');
+
 addButton.onclick = function(){
+  addButton.disabled = true;
+  addButton.innerHTML = "wait please";
+  addStatus.innerHTML = "";
   var userChoices = getUserInput();
   console.log(userChoices);
   /* inpagelog.innerHTML += JSON.stringify(userChoices);
@@ -122,6 +127,7 @@ function getUserInput(){
 // Make an API call to create an event.  Give feedback to user.
 function createEvent(eventData) {
   inpagelog.innerHTML += `START createEvent: ${eventData.eventTitle}, ${eventData.date.replace(/-/g, '/')}, ${eventData.startTime}, ${eventData.endTime}<br/>`;
+  addStatus.innerHTML += `adding ${eventData.eventTitle}@${eventData.startTime}<br/>`;
 //  inpagelog.innerHTML += `DEBUG GENDATE01 input: ${eventData.date.replace(/-/g, '/') + " " + eventData.startTime}<br/>`;
 //  inpagelog.innerHTML += `DEBUG GENDATE01: ${new Date(eventData.date.replace(/-/g, '/') + " " + eventData.startTime).toISOString()}<br/>`;
   // First create resource that will be send to server.
@@ -148,12 +154,15 @@ function createEvent(eventData) {
       console.log(resp);
       if (resp && !resp.error) {
         // alert(`Added etag = ${resp.etag}, id = ${resp.id}`);
-        inpagelog.innerHTML += `Added etag = ${resp.etag}, id = ${resp.id}<br/>`;
+        inpagelog.innerHTML += `Added etag = ${resp.etag}<br/>`;
+        addStatus.innerHTML += `Added etag = ${resp.etag}<br/>`;
 
       } else {
         alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
         handleAuthClick(eventData);
-      }
+      }      
+      addButton.innerText = "Add to Google Calendar";
+      addButton.disabled = false;
     });
 }
 
