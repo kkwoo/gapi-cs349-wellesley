@@ -54,6 +54,7 @@ function handleAuthResult(authResult) {
     } else {
           authorizeButton.style.visibility = '';
           authorizeButton.onclick = handleAuthClick;
+          inpagelog.innerHTML += authResult.error;
         }
 }
 
@@ -74,6 +75,10 @@ performing API calls. */
 var addButton = document.getElementById('addToCalendar');
 var addStatus = document.getElementById('addStatus');
 
+function enableAddButton() {
+      addButton.innerText = "Add to Google Calendar";
+      addButton.disabled = false;
+}
 addButton.onclick = function(){
   addButton.disabled = true;
   addButton.innerHTML = "wait please";
@@ -84,6 +89,9 @@ addButton.onclick = function(){
   inpagelog.innerHTML += "<br/>"; */
   if (userChoices) {
     createEvent(userChoices);
+  }
+  else {
+    enableAddButton();
   }
 }
 
@@ -159,11 +167,43 @@ function createEvent(eventData) {
 
       } else {
         alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
-        handleAuthClick(eventData);
-      }      
-      addButton.innerText = "Add to Google Calendar";
-      addButton.disabled = false;
+        // creates infinite loop with http-400        
+        // reauthAndReinsert();
+
+        // reauth after whatever failure
+        checkAuth();
+      }
+      enableAddButton();      
     });
+}
+
+function reauthAndReinsert(event) {
+    gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, 
+                        handleAuthResultWithReinsert);
+    return false;
+}
+
+function handleAuthResultWithReinsert(authResult) {
+    // console.log(`Inside handleAuthResult ...`);
+    // console.log(`Inside handleAuthResult ...: ${JSON.stringify(authResult)}`);
+    inpagelog.innerHTML += 'Inside handleAuthResult ...<br/>';
+    authData = authResult;
+    var authorizeButton = document.getElementById('authorize-button');
+    var addButton = document.getElementById('addToCalendar');
+    if (authResult && !authResult.error) {
+          authorizeButton.style.visibility = 'hidden';
+          addButton.style.visibility = 'visible'; 
+          //load the calendar client library
+          gapi.client.load('calendar', 'v3', function(){ 
+            // console.log("Calendar library loaded.");
+            inpagelog.innerHTML += "Calendar library loaded.<br/>";
+            createEvent(getUserInput());
+          });
+    } else {
+          authorizeButton.style.visibility = '';
+          authorizeButton.onclick = handleAuthClick;
+          inpagelog.innerHTML += authResult.error;
+        }
 }
 
 // register radio buttons
