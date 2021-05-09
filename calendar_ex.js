@@ -166,12 +166,17 @@ function createEvent(eventData) {
         addStatus.innerHTML += `Added etag = ${resp.etag}<br/>`;
 
       } else {
-        alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
         // creates infinite loop with http-400        
         // reauthAndReinsert();
 
         // reauth after whatever failure
-        checkAuth();
+        if (resp.code == 400) {
+          alert(`fail: HTTP code ${resp.code} and will reload...`);
+          location.reload();
+        } else if (resp.code == 401) {
+          alert(`fail: HTTP code ${resp.code} and will reauthorise...`);
+          checkAuth();
+        }
       }
       enableAddButton();      
     });
