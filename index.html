@@ -26,7 +26,10 @@
     </div>     
     <div class="lhs">
       <div>Start time</div>
-      <div><input type="time" id="start" step="1"></div>
+      <div>
+        <input type="time" id="start" step="1">
+        <label for="start" id="startlabel"></label>
+      </div>
     </div>
     <div class="rhs">
       <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
@@ -34,7 +37,10 @@
     </div>
     <div class="lhs">
       <div>End time:</div>
-      <div><input type="time" id="end" step="1"></div>
+      <div>
+        <input type="time" id="end" step="1">
+        <label for="end" id="endlabel"></label>
+      </div>
     </div>
     <div class="rhs">
       <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>

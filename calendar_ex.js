@@ -16,7 +16,7 @@ in order to toggle on/off the visibility of two buttons of the user interface.
 var clientId = '245081219628-a7urtp41iof28b6kqskr5j3a3dhu1c12.apps.googleusercontent.com';
 var apiKey = 'AIzaSyBwrfTm8j1glmNnjQMk6LrSR02R5STl06I';
 var scopes = 'https://www.googleapis.com/auth/calendar';
-var inpagelog = document.getElementById('inpagelog')      
+var inpagelog = document.getElementById('inpagelog');      
       
 /* Function invoked when the client javascript library is loaded */
 function handleClientLoad() {
@@ -110,6 +110,7 @@ function setTime(tRef) {
   let now = new Date();
   let curTime = now.toTimeString().slice(0,8);
   document.querySelector(tRef).value = curTime;
+  document.querySelector(tRef+"label").innerHTML = curTime;
   // console.log(curTime);
 }
 
