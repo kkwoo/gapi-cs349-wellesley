@@ -22,29 +22,29 @@
     </div>
     <div class="rhs">
       <button id="btn-set-start" onclick="setDate()">Today</button>
-      <button id="btn-reset-start" onclick="resetInput('date');">Reset Date</button>
+      <button id="btn-reset-start" onclick="resetInput('#date');">Reset Date</button>
     </div>     
     <div class="lhs">
       <div>Start time</div>
       <div>
-        <input type="time" id="start" step="1" onchange="setTime('#start')">
+        <input type="time" id="start" step="1" onchange="setLabel('#start')">
         <label for="start" id="startlabel"></label>
       </div>
     </div>
     <div class="rhs">
       <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
-      <button id="btn-reset-stime" onclick="resetInput('start');">Reset Time</button>
+      <button id="btn-reset-stime" onclick="resetInput('#start');">Reset Time</button>
     </div>
     <div class="lhs">
       <div>End time:</div>
       <div>
-        <input type="time" id="end" step="1" onchange="setTime('#end')">
+        <input type="time" id="end" step="1" onchange="setLabel('#end')">
         <label for="end" id="endlabel"></label>
       </div>
     </div>
     <div class="rhs">
       <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>
-      <button id="btn-reset-etime" onclick="resetInput('end');">Reset Time</button>
+      <button id="btn-reset-etime" onclick="resetInput('#end');">Reset Time</button>
     </div>
     <div class="lhs">Event description:</div>
     <div class="rhs"><input type="text" id="habit"></div>

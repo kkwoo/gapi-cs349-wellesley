@@ -114,8 +114,14 @@ function setTime(tRef) {
   // console.log(curTime);
 }
 
+function setLabel(tRef) {
+  document.querySelector(tRef+"label").innerHTML = document.querySelector(tRef).value;
+  // console.log(curTime);
+}
+
 function resetInput(hE) {
-  document.getElementById(hE).value = '';
+  document.querySelector(hE).value = '';
+  setLabel(hE);
 }
 function getUserInput(){
   
