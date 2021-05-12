@@ -27,7 +27,7 @@
     <div class="lhs">
       <div>Start time</div>
       <div>
-        <input type="time" id="start" step="1">
+        <input type="time" id="start" step="1" onchange="setTime('#start')">
         <label for="start" id="startlabel"></label>
       </div>
     </div>
@@ -38,7 +38,7 @@
     <div class="lhs">
       <div>End time:</div>
       <div>
-        <input type="time" id="end" step="1">
+        <input type="time" id="end" step="1" onchange="setTime('#end')">
         <label for="end" id="endlabel"></label>
       </div>
     </div>
