@@ -74,6 +74,7 @@ performing API calls. */
 
 var addButton = document.getElementById('addToCalendar');
 var addStatus = document.getElementById('addStatus');
+var timeWindow = {};
 
 function enableAddButton() {
       addButton.innerText = "Add to Google Calendar";
@@ -108,6 +109,7 @@ function setDate() {
 
 function setTime(tRef) {
   let now = new Date();
+  timeWindow[tRef] = now;
   let curTime = now.toTimeString().slice(0,8);
   document.querySelector(tRef).value = curTime;
   document.querySelector(tRef+"label").innerHTML = curTime;
@@ -128,7 +130,7 @@ function getUserInput(){
   var date = document.querySelector("#date").value;
   var startTime = document.querySelector("#start").value;
   var endTime = document.querySelector("#end").value;
-  var eventDesc = document.querySelector("#habit").value;
+  var eventDesc = document.querySelector("#habit").value + ` ${(timeWindow['#end'] - timeWindow['#start']) % 1000}ms`;
   
   // check input values, they should not be empty
   if (date=="" || startTime=="" || endTime=="" || eventDesc==""){
