@@ -109,14 +109,21 @@ function setDate() {
 
 function setTime(tRef) {
   let now = new Date();
-  timeWindow[tRef] = now;
   let curTime = now.toTimeString().slice(0,8);
+  timeWindow[tRef] = now;
   document.querySelector(tRef).value = curTime;
   document.querySelector(tRef+"label").innerHTML = curTime;
   // console.log(curTime);
 }
 
 function setLabel(tRef) {
+  // make assumptions to set the timeWindow
+  timeWindow[tRef] = new Date();
+  let timeFields = document.querySelector(tRef).value.split(':');
+  timeWindow[tRef].setHours(timeFields[0]);
+  timeWindow[tRef].setMinutes(timeFields[1]);
+  timeWindow[tRef].setSeconds(timeFields[2]);
+  
   document.querySelector(tRef+"label").innerHTML = document.querySelector(tRef).value;
   // console.log(curTime);
 }
@@ -130,7 +137,8 @@ function getUserInput(){
   var date = document.querySelector("#date").value;
   var startTime = document.querySelector("#start").value;
   var endTime = document.querySelector("#end").value;
-  var eventDesc = document.querySelector("#habit").value + `: ${(timeWindow['#end'] - timeWindow['#start'])}ms`;
+  var dd = new Date((timeWindow['#end'] - timeWindow['#start']));
+  var eventDesc = document.querySelector("#habit").value + `: ${dd.getMinutes()}m${dd.getSeconds()}s`;
   
   // check input values, they should not be empty
   if (date=="" || startTime=="" || endTime=="" || eventDesc==""){
