@@ -130,7 +130,7 @@ function getUserInput(){
   var date = document.querySelector("#date").value;
   var startTime = document.querySelector("#start").value;
   var endTime = document.querySelector("#end").value;
-  var eventDesc = document.querySelector("#habit").value + ` ${(timeWindow['#end'] - timeWindow['#start']) % 1000}ms`;
+  var eventDesc = document.querySelector("#habit").value + `: ${(timeWindow['#end'] - timeWindow['#start']) % 1000}ms`;
   
   // check input values, they should not be empty
   if (date=="" || startTime=="" || endTime=="" || eventDesc==""){
