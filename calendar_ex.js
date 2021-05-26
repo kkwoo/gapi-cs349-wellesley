@@ -122,8 +122,12 @@ function setLabel(tRef) {
   let timeFields = document.querySelector(tRef).value.split(':');
   timeWindow[tRef].setHours(timeFields[0]);
   timeWindow[tRef].setMinutes(timeFields[1]);
-  timeWindow[tRef].setSeconds(timeFields[2]);
-  
+  // only assign seconds if seconds are available
+  // eg not IOS
+  if (timeFields.length > 2) {
+    timeWindow[tRef].setSeconds(timeFields[2]);
+  }
+
   document.querySelector(tRef+"label").innerHTML = document.querySelector(tRef).value;
   // console.log(curTime);
 }
