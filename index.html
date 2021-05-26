@@ -25,7 +25,7 @@
     </div>
     <div class="rhs">
       <button id="btn-set-start" onclick="setDate()">Today</button>
-      <button id="btn-reset-start" onclick="resetInput('#date');">Reset Date</button>
+      <button id="btn-reset-start" onclick="resetInputandLabel('#date');">Reset Date</button>
     </div>     
     <div class="lhs">
       <div>Start time</div>
@@ -36,7 +36,7 @@
     </div>
     <div class="rhs">
       <button id="btn-set-stime" onclick="setTime('#start')">set to current time</button>
-      <button id="btn-reset-stime" onclick="resetInput('#start');">Reset Time</button>
+      <button id="btn-reset-stime" onclick="resetInputandLabel('#start');">Reset Time</button>
     </div>
     <div class="lhs">
       <div>End time:</div>
@@ -47,10 +47,13 @@
     </div>
     <div class="rhs">
       <button id="btn-set-etime" onclick="setTime('#end')">set to current time</button>
-      <button id="btn-reset-etime" onclick="resetInput('#end');">Reset Time</button>
+      <button id="btn-reset-etime" onclick="resetInputandLabel('#end');">Reset Time</button>
     </div>
     <div class="lhs">Event description:</div>
-    <div class="rhs"><input type="text" id="habit"></div>
+    <div class="rhs">
+      <input type="text" id="habit">
+      <button onclick="resetInput('#habit')">clear text</button>
+    </div>
     <div class="lhs">
       <div>
         <input type="radio" id="r01" name="habitlist" value="600mL water">

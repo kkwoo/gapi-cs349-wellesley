@@ -132,10 +132,15 @@ function setLabel(tRef) {
   // console.log(curTime);
 }
 
-function resetInput(hE) {
-  document.querySelector(hE).value = '';
+function resetInputandLabel(hE) {
+  resetInput(hE);
   setLabel(hE);
 }
+
+function resetInput(hE) {
+  document.querySelector(hE).value = '';
+}
+
 function getUserInput(){
   
   var date = document.querySelector("#date").value;
