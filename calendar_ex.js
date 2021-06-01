@@ -244,6 +244,7 @@ r03.onclick = doSomething;
 r04.onclick = doSomething;
 r05.onclick = doSomething;
 r06.onclick = doSomething;
+r07.onclick = doSomething;
 
 function doSomething(e) {
   e = e || window.e; // IE
