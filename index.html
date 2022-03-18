@@ -88,10 +88,10 @@
     </div>
     <div class="lhs">
       <div>
-        <button id="authorize-button" style="visibility: hidden">Login & Authorize</button>
+        <button id="revokeBtn" onclick="revokeToken();">Revoke access token</button>
       </div>
       <div>
-        <button id="addToCalendar" style="visibility: hidden">Add to Google Calendar</button>
+        <button id="addToCalendarBtn">Add to Google Calendar</button>
       </div>
       <div>
         <button onclick="location.reload()">Reload</button>
@@ -106,6 +106,11 @@
     </div>
   </div>
     <script src="calendar_ex.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoadOkay()" onerror="gapiLoadFail(event)"></script>
+  <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoadOkay()" onerror="gisLoadFail(event)"></script>
+    <!-- ROLLBACK VALID TO 2023-03-31
+       <script src="https://apis.google.com/js/client.js?onload=handleClientLoad">
+    -->
+</script>
 </body>
 </html>
