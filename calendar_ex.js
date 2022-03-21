@@ -82,7 +82,7 @@
                 reject(resp);
               }
               // GIS has automatically updated gapi.client with the newly issued access token.
-              inpagelog.innerHTML += `gapi.client access token: ${JSON.stringify(gapi.client.getToken())}`; 
+              inpagelog.innerHTML += `gapi.client access token: ${JSON.stringify(gapi.client.getToken().access_token)} <br>`; 
               resolve(resp);
             };
             tokenClient.requestAccessToken();
@@ -101,7 +101,9 @@
     function revokeToken() {
       let cred = gapi.client.getToken();
       if (cred !== null) {
-        google.accounts.oauth2.revoke(cred.access_token, () => {console.log('Revoked: ' + cred.access_token)});
+        google.accounts.oauth2.revoke(cred.access_token, () => { 
+          inpagelog.innerHTML += `Revoked: ${cred.access_token} <br>`;
+        });
         gapi.client.setToken('');
       }
     }
