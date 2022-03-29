@@ -43,19 +43,31 @@
       });
       await gapi.client.init({
         // NOTE: OAuth2 'scope' and 'client_id' parameters have moved to initTokenClient().
+        // ALSO, if you pop an invalid apiKey, then the "Add to Google Calendar" button definitely stops working and gets stuck at "waiting"
+        // apiKey: 'AIzaSyBwrfTm8j1glmNnjQMk6LrSR02R5STl06I'
+        // from quickstart project apiKey: 'AIzaSyCpUpPqikoXgz0uvMXncXLoJKAVg9j3jTc'
+        // Nonetheless, the code still functions without an API Key
       })
       .then(function() {  // Load the Calendar API discovery document.
         gapi.client.load('calendar', 'v3');
-      });
+      })
 
       // Now load the GIS client
       await gisLoadPromise;
         await new Promise((resolve, reject) => {
           try {
             tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: '245081219628-d5dv2j0gqpe66m3t3i1r39i30q00gkq7.apps.googleusercontent.com',
+                // from old quickstart project client_id: '245081219628-d5dv2j0gqpe66m3t3i1r39i30q00gkq7.apps.googleusercontent.com',
+                // new project, but external OAuth client_id: '868235411176-mr88d60d4mj5i5u50hvdh430g5mt6a28.apps.googleusercontent.com',
+                // jadebit project, internal OAuth
+                client_id: '17740509153-5ku9if92cdbr0fofg9u7hof5r5no86k7.apps.googleusercontent.com',
                 scope: 'https://www.googleapis.com/auth/calendar',
-                prompt: 'consent',
+                /* is prompt=consent causing the extra check?  https://developers.google.com/identity/oauth2/web/guides/use-token-model
+
+. By default, user consent is only necessary the first time a user visits your website and requests a new scope but may be requested on every page load using prompt=consent in Token Client config objects.
+                  */
+
+                // prompt: 'consent',
                 callback: '',  // defined at request time in await/promise scope.
             });
             resolve();
