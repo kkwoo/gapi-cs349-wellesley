@@ -211,12 +211,15 @@ function createEvent(eventData) {
         'resource': resource      })
       .then(calendarAPIResponse => {
         inpagelog.innerHTML += `Added etag = ${JSON.stringify(calendarAPIResponse.result.etag)}<br/>`;
+        addStatus.innerHTML += `Added etag =  ${JSON.stringify(calendarAPIResponse.result.etag)}<br/>`;
       })
       .catch(err  => getToken(err) // only retry insert on calling getToken
         .then(retry => gapi.client.calendar.events.insert({ 'calendarId': 'primary',
                                                         'resource': resource }))
         .then(calendarAPIResponse => {
           inpagelog.innerHTML += `Added etag =  ${JSON.stringify(calendarAPIResponse.result.etag)}<br/>`;
+          addStatus.innerHTML += `Added etag =  ${JSON.stringify(calendarAPIResponse.result.etag)}<br/>`;
+
         })
         .catch(err  => console.log(err)));  // for authorization errors obtain an access token
 
