@@ -7,16 +7,18 @@
       gisLoadOkay = resolve;
       gisLoadFail = reject;
     });
+    const addButtonText = 'Add to JadeBit Calendar';
 
     var tokenClient;
     var addButton = document.getElementById('addToCalendarBtn');
+    var revokeButton = document.getElementById('revokeBtn');
     var addStatus = document.getElementById('addStatus');
     var inpagelog = document.getElementById('inpagelog');   
     var timeWindow = {};
 
     (async () => {
-      document.getElementById("addToCalendarBtn").style.visibility="hidden";
-      document.getElementById("revokeBtn").style.visibility="hidden";
+      addButton.style.visibility="hidden";
+      revokeButton.style.visibility="hidden";
       // authorizeButton.onclick = handleAuthClick;
       addButton.onclick = function(){
         // addButton.disabled = true;
@@ -77,7 +79,8 @@
         });
 
       addButton.style.visibility="visible";
-      document.getElementById("revokeBtn").style.visibility="visible";
+      enableAddButton();
+      revokeButton.style.visibility="visible";
     })();
 
     async function getToken(err) {
@@ -122,7 +125,7 @@
 
 
 function enableAddButton() {
-      addButton.innerText = "Add to Google Calendar";
+      addButton.innerText = addButtonText;
       addButton.disabled = false;
 }
 
