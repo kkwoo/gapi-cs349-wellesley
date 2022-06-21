@@ -7,7 +7,7 @@
       gisLoadOkay = resolve;
       gisLoadFail = reject;
     });
-    const addButtonText = 'Add to JadeBit Calendar';
+    const addButtonText = 'Add to Google Calendar';
 
     var tokenClient;
     var addButton = document.getElementById('addToCalendarBtn');
@@ -61,8 +61,8 @@
             tokenClient = google.accounts.oauth2.initTokenClient({
                 // from old quickstart project client_id: '245081219628-d5dv2j0gqpe66m3t3i1r39i30q00gkq7.apps.googleusercontent.com',
                 // new project, but external OAuth client_id: '868235411176-mr88d60d4mj5i5u50hvdh430g5mt6a28.apps.googleusercontent.com',
-                // jadebit project, internal OAuth
-                client_id: '17740509153-5ku9if92cdbr0fofg9u7hof5r5no86k7.apps.googleusercontent.com',
+                // kevin.k.woo project, internal OAuth
+                client_id: '868235411176-mr88d60d4mj5i5u50hvdh430g5mt6a28.apps.googleusercontent.com',
                 scope: 'https://www.googleapis.com/auth/calendar',
                 /* is prompt=consent causing the extra check?  https://developers.google.com/identity/oauth2/web/guides/use-token-model
 
